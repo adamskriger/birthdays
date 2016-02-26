@@ -8,12 +8,12 @@ var db = require('../db/pg');
 
 
 
-router.get('/:members_id/all', db.getMembers,  (req, res) => {
+router.get('/all/:members_id/', db.getMembers,  (req, res) => {
   res.render('pages/members.html.ejs', {members: res.members});
 });
 
-router.post('/:members_id/all', db.addFriend, (req, res) => {
-  console.log("This is the ");
+router.post('/all/:members_id/', db.addFriend, (req, res) => {
+  console.log("This is the post being hit ");
 });
 
 
