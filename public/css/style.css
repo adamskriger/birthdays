@@ -1,0 +1,33 @@
+
+
+.friends {
+
+width: 300px;
+height: 300px;
+border-width: 3px;
+border-style: solid;
+border-color: black;
+
+}
+
+.membersection {
+
+width: 300px;
+height: 300px;
+border-width: 3px;
+border-style: solid;
+border-color: black;
+
+}
+
+.individualmember {
+
+  width: 200px;
+  height: 200px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: black;
+  display: inline-block;
+  float: left; 
+
+}

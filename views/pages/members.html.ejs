@@ -3,11 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <% include ../partials/head.html.ejs %>
+
   </head>
   <body>
-  <% members.forEach(function(member) { %>
+
+
+   <% members.forEach(function(member) { %><div class= individualmember>
       <% for (var attr in member) { %>
         <%= member[attr] %>
       <% } %>
-   <% }) %>  </body>
+</div>    <% }) %> 
+
+
+
+
+
+
+ </body>
+
+
 </html>
