@@ -30,3 +30,25 @@ module.exports.getMembers = (req, res, next) => {
     });
   });
 };
+
+module.exports.getMember = (req, res, next) => {
+  pg.connect(config, (err, client, done) => {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+    client.query('SELECT * FROM members WHERE members_id = $1', [req.params.members_id], (err, results) => {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      res.members = results.rows;
+      next();
+    });
+  });
+
+};

@@ -13,7 +13,9 @@ router.get('/members', db.getMembers,  (req, res) => {
 
 
 
-
+router.get('/:members_id', db.getMember, (req, res) => {
+  res.render('pages/show.ejs', {member: res.members[0]});
+});
 
 
 
