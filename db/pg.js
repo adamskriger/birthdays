@@ -1,3 +1,4 @@
+// 'use strict'
 var pg = require('pg');
 
 // var config = {
@@ -45,7 +46,7 @@ module.exports.getMember = (req, res, next) => {
       if (err) {
         console.error('Error with query', err);
       }
-
+      console.log("This is results.rows", results.rows);
       res.members = results.rows;
       next();
     });
@@ -61,12 +62,22 @@ module.exports.displayFriends = (req, res, next) => {
       res.status(500).json({success: false, data: err});
     }
 
-    client.query('SELECT m1.member_name, m.members_id AS friend_id, m.member_name AS friend_name FROM friends AS f INNER JOIN members AS m on f.friend_id = m.members_id and f.members_id = $1 INNER JOIN members m1 ON f.members_id = m1.members_id;',[req.params.members_id], (err, results) => {
+    client.query(`SELECT m1.member_name,
+      m.members_id AS friend_id,
+      m.member_name AS friend_name
+      FROM friends AS f
+      INNER JOIN members AS m
+      on f.friend_id = m.members_id
+      and f.members_id = $1
+      INNER JOIN members m1
+      ON f.members_id = m1.members_id;`,[req.params.members_id], (err, results) => {
       done();
 
       if (err) {
         console.error('Error with query', err);
       }
+      console.log("results.rows: ",  results.rows );
+      console.log("res.members: ",  res.members);
 
       res.friends = results.rows;
       next();

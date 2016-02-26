@@ -6,11 +6,18 @@
 <body>
   <div class="container">
     <div class="">
-      <h2>Member #<span><%= member.members_id %></span></h2>
-    </div>
+      <p>Member #: <%= member.members_id %></p>
+      <p>Name: <%=member.member_name%></p>
+      <p>email: <%=member.email%></p>
+      <p>birthdate: <%=member.birthday%></p>
 
-<div class="">
-  
-</div>
+
+    </div class = "friends">
+    <% friends.forEach(function(friend) { %>
+      <% for (var attr in friend) { %>
+        <%= friend[attr] %>
+      <% } %>
+   <% }) %>
+
   </div>
 </body>
