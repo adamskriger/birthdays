@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
   res.render('pages/index.html.ejs');
 });
 
-app.use('/massages', birthdaysRouter);
-app.use('/masseuists', birthdaysRouter);
+app.use('/birthdays', birthdaysRouter);
+// app.use('/masseuists', birthdaysRouter);
 
 
 app.listen(process.env.PORT, function() {

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% members.forEach(function(member) { %>
+      <% for (var attr in member) { %>
+        <%= member[attr] %>
+      <% } %>
+   <% }) %>  </body>
+</html>
