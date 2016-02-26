@@ -13,7 +13,7 @@ CREATE TABLE members (
 
 CREATE TABLE friends (
 
-    members_id INTEGER,
-    friend_id INTEGER
+    members_id INTEGER REFERENCES members (members_id),
+    friend_id INTEGER REFERENCES members (members_id)
 
 );

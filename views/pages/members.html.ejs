@@ -13,14 +13,18 @@
       <% for (var attr in member) { %>
         <%= member[attr] %>
       <% } %>
-</div>    <% }) %> 
 
+    <form class="" action="/members.html.ejs" method="post">
 
+      <input type="hidden" name="friend_id" value="<%= friends.friend_id %>">
 
+      <button type="submit">Add Friend</button>
 
+  </form>
 
+</div>
+<% }) %>
 
  </body>
-
 
 </html>

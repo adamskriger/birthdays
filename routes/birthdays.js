@@ -22,14 +22,11 @@ router.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
+// router.post('/members', db.addFriend, (req, res) => {
+//   alert('Friend Added', {friends: res.friends} );
+// });
+//
+//
 
 
 
