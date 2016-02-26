@@ -20,7 +20,9 @@ router.get('/:members_id', db.getMember, (req, res) => {
 
 
 
-
+router.get('/:members_id', db.displayFriends,  (req, res) => {
+  res.render('pages/friends.html.ejs', {friends: res.friends});
+});
 
 
 
