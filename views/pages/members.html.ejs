@@ -14,8 +14,11 @@
         <%= member[attr] %>
       <% } %>
 
-    <form class="" action="/members.html.ejs" method="post">
+    <form class="" action="/<%= members.members_id %>/all" method="post">
 
+      <input type="hidden" name="<members></members>" value="req.params.members_id">
+
+      <input type="hidden" name="friend_id" value="members.members_id">
 
       <button type="submit">Add Friend</button>
 

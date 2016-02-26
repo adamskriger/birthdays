@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 
-var birthdaysRouter = require('./routes/birthdays');
+var membersRouter = require('./routes/members');
 
 
 
@@ -29,8 +29,7 @@ app.get('/', (req, res) => {
   res.render('pages/index.html.ejs');
 });
 
-app.use('/birthdays', birthdaysRouter);
-// app.use('/masseuists', birthdaysRouter);
+app.use('/members', membersRouter);
 
 
 app.listen(process.env.PORT, function() {

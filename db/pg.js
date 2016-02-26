@@ -85,3 +85,26 @@ module.exports.displayFriends = (req, res, next) => {
   });
 
 };
+
+
+module.exports.addFriend = (req, res, next) => {
+  pg.connect(config, (err, client, done) => {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+    client.query('INSERT INTO friends (members_id, friend_id) VALUES ($1, $2)', [req.params.members_id, members.members_id], (err, results) => {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      res.massages = results.rows;
+      next();
+    });
+  });
+
+};
