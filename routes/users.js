@@ -28,9 +28,13 @@ users.post('/login', db.loginUser, function(req, res) { console.log("LOG: ", req
   // the destination page well before we finished sending the response to the client."
 
   req.session.save(function() {
-    res.redirect('/')
+    res.redirect('/users/' + req.session.user.members_id)
   });
 })
+
+users.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
+  res.render('pages/show.ejs', {member: res.members[0], friends: res.friends});
+});
 
 users.delete('/logout', function(req, res) {
   req.session.destroy(function(err){

@@ -28,6 +28,19 @@ border-color: black;
   border-style: solid;
   border-color: black;
   display: inline-block;
-  float: left; 
+  float: left;
+
+}
+
+.nav {
+
+  position: relative;
+  left: 850px;
+
+}
+.nav-element {
+
+  float: left;
+  margin: 10px;
 
 }

@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>sign up!</title>
+  <% include ../partials/head.html.ejs %>
+
 </head>
 <body>
-<h1>Sign Up page!</h1>
+<div class="container">
+
+
+<h1>Sign Up!</h1>
 <form action="/users" method="post">
-<!-- 
+<!--
   <div>
     <label for="member_name">member_name</label>
     <input type="text" name="member_name">
   </div> -->
+<div class="container">
 
   <div>
     <label for="email">email</label>
@@ -30,6 +36,10 @@
   </div>
 
   <input type="submit" value="SuBMit">
+
+</div>
+
 </form>
+
 </body>
 </html>
