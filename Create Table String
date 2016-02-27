@@ -1,0 +1,1 @@
+psql birthdays < node_modules/connect-pg-simple/table.sql 

@@ -5,10 +5,9 @@ CREATE TABLE members (
 
   members_id SERIAL UNIQUE PRIMARY KEY,
   member_name text,
-  email VARCHAR(320),
+  email VARCHAR(320) UNIQUE,
   birthday date,
-  password text
-
+  password_digest text
 );
 
 CREATE TABLE friends (

@@ -6,17 +6,23 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-
+///Log-in Stuff Appears Below:
+var config = "postgres://Adam1:Move2core@localhost/birthdays";
+var pg = require('pg');
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
+var session = require('express-session');
+var app = express();
+var pgSession = require('connect-pg-simple')(session);
+var userRoutes = require( path.join(__dirname, '/routes/users'));
 var membersRouter = require('./routes/members');
 
 
-
-var app = express();
-
-app.use(morgan('dev'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+
+app.use(morgan('dev'));
 
 app.use(methodOverride('_method'));
 
@@ -25,11 +31,31 @@ app.use(express.static('./public/'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.render('pages/index.html.ejs');
-});
-
+app.use('/users', userRoutes)
 app.use('/members', membersRouter);
+
+
+
+app.use(session({
+  store: new pgSession({
+    pg : pg,
+    conString : config,
+    tableName : 'session'
+  }),
+  secret : 'soooosecreetttt',
+  resave : false,
+  cookie : { maxAge : 30 * 24 * 60 * 60 * 1000 } // 30 days
+}))
+
+
+app.get('/', function(req, res) {
+  res.render('home.html.ejs', { user : req.session.user});
+})
+
+
+
+
+
 
 
 app.listen(process.env.PORT, function() {
