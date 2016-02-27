@@ -46,7 +46,7 @@ module.exports.getMember = (req, res, next) => {
       if (err) {
         console.error('Error with query', err);
       }
-      console.log("This is results.rows", results.rows);
+      // console.log("This is results.rows", results.rows);
       res.members = results.rows;
       next();
     });
