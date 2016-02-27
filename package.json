@@ -1,0 +1,30 @@
+{
+  "name": "birthdays",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamskriger/birthdays.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamskriger/birthdays/issues"
+  },
+  "homepage": "https://github.com/adamskriger/birthdays#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "method-override": "^2.3.5",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "pg": "^4.5.1",
+    "request": "^2.69.0"
+  }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+  <% include ../partials/head.html.ejs %>
+
+</head>
+
+<body>
+    <div class="container">
+
+<div class="row membersection">
+<div class="6 columns">
+
+
+
+      <p>Member #: <%= member.members_id %></p>
+      <p>Name: <%=member.member_name%></p>
+      <p>email: <%=member.email%></p>
+      <p>birthdate: <%=member.birthday%></p>
+</div>
+</div>
+
+
+
+<div class=" row friends">
+  <div class="6 columns">
+
+
+    <% friends.forEach(function(friend) { %>
+      <% for (var attr in friend) { %>
+        <%= friend[attr] %>
+      <% } %>
+   <% }) %>
+</div>
+</div>
+
+
+
+<!-- ///end container // -->
+  </div>
+</body>

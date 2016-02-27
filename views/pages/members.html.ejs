@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <% include ../partials/head.html.ejs %>
+
+  </head>
+  <body>
+
+
+   <% members.forEach(function(member) { %><div class= individualmember>
+      <% for (var attr in member) { %>
+        <%= member[attr] %>
+      <% } %>
+
+    <form class="" action="/all/<%=members.members_id%>" method="post">
+
+      <input type="hidden" name="<members_id>" value="req.params.members_id">
+
+      <input type="hidden" name="friend_id" value="<%=members.members_id%>">
+
+      <button type="submit">Add Friend</button>
+
+  </form>
+
+</div>
+<% }) %>
+
+ </body>
+
+</html>
