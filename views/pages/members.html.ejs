@@ -14,9 +14,9 @@
         <%= member[attr] %>
       <% } %>
 
-    <form class="" action="/all/<%=members.members_id%>" method="post">
+    <form class="" action="/all/members.members_id/" method="post">
 
-      <input type="hidden" name="<members_id>" value="req.params.members_id">
+      <input type="hidden" name="members_id" value="req.session.user">
 
       <input type="hidden" name="friend_id" value="<%=members.members_id%>">
 

@@ -13,7 +13,8 @@ router.get('/all/:members_id/', db.getMembers,  (req, res) => {
 });
 
 router.post('/all/:members_id/', db.addFriend, (req, res) => {
-  console.log("This is the post being hit ");
+  // console.log("This is the post being hit ");
+  res.redirect('/all/:members_id/'); 
 });
 
 
