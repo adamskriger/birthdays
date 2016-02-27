@@ -31,11 +31,12 @@ function loginUser(req, res, next) {
         if (err) {
           return console.error('error running query', err)
         }
-
+console.log("LOG2: ", results.rows);
         if (results.rows.length === 0) {
           res.status(204).json({success: true, data: 'no content'})
         } else if (bcrypt.compareSync(password, results.rows[0].password_digest)) {
           res.rows = results.rows[0]
+          console.log("LOG3: ", res.rows);
           next()
         }
       })

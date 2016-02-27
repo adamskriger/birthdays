@@ -13,13 +13,27 @@ var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 var session = require('express-session');
 var app = express();
-var pgSession = require('connect-pg-simple')(session);
 var userRoutes = require( path.join(__dirname, '/routes/users'));
+var session = require('express-session');
+var pgSession = require('connect-pg-simple')(session);
+
 var membersRouter = require('./routes/members');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.use(session({
+  store: new pgSession({
+    pg : pg,
+    conString : config,
+    tableName : 'session'
+  }),
+  secret : 'soooosecreetttt',
+  resave : false,
+  saveUninitialized: true,
+  cookie : { maxAge : 30 * 24 * 60 * 60 * 1000 } // 30 days
+}))
 
 
 app.use(morgan('dev'));
@@ -36,19 +50,8 @@ app.use('/members', membersRouter);
 
 
 
-app.use(session({
-  store: new pgSession({
-    pg : pg,
-    conString : config,
-    tableName : 'session'
-  }),
-  secret : 'soooosecreetttt',
-  resave : false,
-  cookie : { maxAge : 30 * 24 * 60 * 60 * 1000 } // 30 days
-}))
-
-
 app.get('/', function(req, res) {
+  console.log("LOG4: ", req.session);
   res.render('home.html.ejs', { user : req.session.user});
 })
 

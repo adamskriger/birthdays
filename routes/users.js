@@ -2,6 +2,7 @@ var express = require('express');
 var users = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../db/pg');
+var session = require('express-session');
 
 
 users.post('/', db.createUser, function(req, res){
@@ -14,10 +15,11 @@ users.get('/new', function(req, res) {
 })
 
 users.get('/login', function(req, res) {
+  console.log("LOG5: ", req.session);
   res.render('users/login.html.ejs');
 })
 
-users.post('/login', db.loginUser, function(req, res) {
+users.post('/login', db.loginUser, function(req, res) { console.log("LOG: ", req.session);
   req.session.user = res.rows
 
   // when you redirect you must force a save due to asynchronisity
