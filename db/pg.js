@@ -95,7 +95,7 @@ module.exports.addFriend = (req, res, next) => {
       res.status(500).json({success: false, data: err});
     }
 
-    client.query('INSERT INTO friends (members_id, friend_id) VALUES ($1, $2)', [req.params.members_id, members.members_id], (err, results) => {
+    client.query('INSERT INTO friends (members_id, members_id) VALUES ($1, $2)', [req.params.members_id, req.body.name], (err, results) => {
       done();
 
       if (err) {
