@@ -33,6 +33,8 @@ users.post('/login', db.loginUser, function(req, res) {
 
 users.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
   res.render('pages/show.ejs', {member: res.members[0], friends: res.friends, user:req.session.user});
+  console.log("FRIENDS: ", res.friends);
+
 });
 
 users.delete('/logout', function(req, res) {

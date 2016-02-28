@@ -14,38 +14,42 @@
   </div>
 </header>
 <body>
-    <div class="container">
+<div class="container">
 
-<div class=" float-left row membersection">
-<div class="6 columns">
-
+  <div class=" float-left row membersection">
+    <div class="eleven columns">
 
 
       <p>Member #: <%= member.members_id %></p>
       <p>Name: <%=member.member_name%></p>
       <p>email: <%=member.email%></p>
       <p>birthdate: <%=member.birthday%></p>
+
+  </div>
 </div>
-</div>
-
-
-
-<div class=" float-left row friends">
-  <div class="6 columns">
-
-
-    <% friends.forEach(function(friend) { %>
-      <% for (var attr in friend) { %>
-        <%= friend[attr] %>
-      <% } %>
-   <% }) %>
-</div>
-</div>
-
-<div class="">
+<div class="findfriends">
   <a href="/members/all">Find Friends</a>
 </div>
 
-<!-- ///end container // -->
+<div class=" float-left row friends-section">
+  <div class="6 columns">
+
+<div class="">
+
+
+    <% friends.forEach(function(friend) { %>
+      <div class="individualmember">
+
+         <%= friends[0].friend_name %>
+
+       </div>
+
+      <% }) %>
+
+</div>
+</div>
+
+
+
   </div>
 </body>

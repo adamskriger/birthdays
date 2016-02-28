@@ -14,10 +14,18 @@
     <%- include ./partials/nav.html.ejs %>
 
   </div>
+
+
+
+  <div class="welcome">
+    <%- include ./partials/welcome.html.ejs %>
+
+  </div>
 </header>
 <body>
 
 <div class="container">
+
 
 
 
@@ -33,13 +41,13 @@
     </form>
   </div>
 
-
+<div>
   <% if (user) {%>
     <h3>Welcome <%= user.email %></h3>
   <% } %>
 
-
-  <!-- end container -->
-  </div>
+  </div
+</div>
+</div>
 </body>
 </html>

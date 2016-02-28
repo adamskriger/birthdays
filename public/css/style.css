@@ -1,23 +1,25 @@
 
 
-.friends {
+.friends-section {
 
-width: 300px;
-height: 300px;
+width: 95%;
+height: 50%;
 border-width: 6px;
 border-style: solid;
 border-color: tomato;
+background-color: #e83635;
 display: inline-block;
 }
 
 .membersection {
 
-width: 300px;
-height: 300px;
+width: 95%;
+height: auto;
 border-width: 6px;
 border-style: solid;
-border-color: tomato;
+border-color: #e83635;
 display: inline-block;
+background-color: tomato;
 
 }
 
@@ -27,7 +29,7 @@ display: inline-block;
   height: 200px;
   border-width: 3px;
   border-style: solid;
-  border-color: black;
+  border-color: #FF6347;
   display: inline-block;
   float: left;
 
@@ -50,4 +52,9 @@ display: inline-block;
   float: left;
   margin: 10px;
 
+}
+
+.findfriends {
+  width: 95%;
+  text-align: center;
 }
