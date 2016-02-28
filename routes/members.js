@@ -14,11 +14,12 @@ router.get('/all', db.getMembers,  (req, res) => {
   res.render('pages/members.html.ejs', {members: res.members, me: req.session.user.members_id});
 });
 
-router.post('/all', db.addFriend, (req, res) => {
-  console.log("res.members addFriend: ", res.members);
-
-  res.redirect('pages/members.html.ejs',{members: res.members} );
+router.post('/all', db.addFriend,db.getMember, (req, res) => {
+  req.method = 'get';
+  res.writeHead(302, {location: '/../../users/' + req.session.user.members_id});
+  res.end();
 });
+
 
 
 router.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {

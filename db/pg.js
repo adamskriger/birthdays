@@ -173,9 +173,7 @@ module.exports.addFriend = (req, res, next) => {
       res.status(500).json({success: false, data: err});
     }
     console.log("req.sessions.user.id", req.session.user.members_id );
-    console.log("membersid", req.body.friend_id);
     client.query('INSERT INTO friends (members_id, friend_id) VALUES ($1, $2)', [req.session.user.members_id, req.body.friend_id], (err, results) => {
-      console.log("req.body.members_id: ", req.body.members_id);
       console.log("req.body.friend_id: ", req.body.friend_id);
 
 
