@@ -7,25 +7,22 @@
 
   </head>
   <body>
-
-
-   <% members.forEach(function(member) { %><div class= individualmember>
-      <% for (var attr in member) { %>
-        <%= member[attr] %>
-      <% } %>
-
-    <form class="" action="/all" method="post">
-
-      <input type="hidden" name="members_id" value="req.session.user">
-
-      <input type="hidden" name="friend_id" value="<%=members.members_id%>">
-
-      <button type="submit">Add Friend</button>
-
-  </form>
-
+<div>
+  <% members.forEach(function(member) { %>
+    <div class= "individualmember">
+      <div> <%= member.members_id %> </div>
+      <div> Name: <%= member.member_name %> </div>
+      <div> Email: <%= member.email %> </div>
+      <div> DOB: <%= member.birthday %> </div>
+      <form action="/members/all" method="post">
+        <input type="hidden" name="members_id" value= <%= me %> >
+        <input type="hidden" name="friend_id" value=<%=members.members_id%>>
+        <button type="submit">Add Friend</button>
+      </form>
+    </div>
+  <% }) %>
 </div>
-<% }) %>
+
 
  </body>
 

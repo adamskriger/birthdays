@@ -13,6 +13,6 @@ CREATE TABLE members (
 CREATE TABLE friends (
 
     members_id INTEGER REFERENCES members (members_id),
-    friend_id INTEGER REFERENCES members (members_id)
-
+    friend_id INTEGER REFERENCES members (members_id),
+    PRIMARY KEY (members_id, friend_id)
 );

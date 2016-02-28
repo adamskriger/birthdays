@@ -19,7 +19,7 @@ users.get('/login', function(req, res) {
   res.render('users/login.html.ejs', {user:req.session.user});
 })
 
-users.post('/login', db.loginUser, function(req, res) { console.log("LOG: ", req.session);
+users.post('/login', db.loginUser, function(req, res) {
   req.session.user = res.rows
 
   // when you redirect you must force a save due to asynchronisity
@@ -33,7 +33,7 @@ users.post('/login', db.loginUser, function(req, res) { console.log("LOG: ", req
 })
 
 users.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
-  res.render('pages/show.ejs', {member: res.members[0], friends: res.friends});
+  res.render('pages/show.ejs', {member: res.members[0], friends: res.friends, user:req.session.user});
 });
 
 users.delete('/logout', function(req, res) {

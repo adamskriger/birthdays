@@ -8,13 +8,14 @@ var db = require('../db/pg');
 
 
 
-router.get('/all/:members_id/', db.getMembers,  (req, res) => {
-  res.render('pages/members.html.ejs', {members: res.members});
+router.get('/all', db.getMembers,  (req, res) => {
+  console.log(req.session.user.members_id)
+  res.render('pages/members.html.ejs', {members: res.members, me: req.session.user.members_id});
 });
 
 router.post('/all', db.addFriend, (req, res) => {
   // console.log("This is the post being hit ");
-  res.redirect('/all/:members_id/');
+  res.redirect('members/all',{members: res.members} );
 });
 
 

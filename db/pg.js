@@ -31,12 +31,11 @@ function loginUser(req, res, next) {
         if (err) {
           return console.error('error running query', err)
         }
-console.log("LOG2: ", results.rows);
+// console.log("LOG2: ", results.rows);
         if (results.rows.length === 0) {
           res.status(204).json({success: true, data: 'no content'})
         } else if (bcrypt.compareSync(password, results.rows[0].password_digest)) {
           res.rows = results.rows[0]
-          console.log("LOG3: ", res.rows);
           next()
         }
       })
@@ -95,14 +94,13 @@ module.exports.getMembers = (req, res, next) => {
       console.log(err);
       res.status(500).json({success: false, data: err});
     }
-
+    // console.log(req.session.user);
     client.query('SELECT * from members;', (err, results) => {
       done();
 
       if (err) {
         console.error('Error with query', err);
       }
-
       res.members = results.rows;
       next();
     });
@@ -153,8 +151,8 @@ module.exports.displayFriends = (req, res, next) => {
       if (err) {
         console.error('Error with query', err);
       }
-      console.log("results.rows: ",  results.rows );
-      console.log("res.members: ",  res.members);
+      // console.log("results.rows: ",  results.rows );
+      // console.log("res.members: ",  res.members);
 
       res.friends = results.rows;
       next();
@@ -165,21 +163,27 @@ module.exports.displayFriends = (req, res, next) => {
 
 
 module.exports.addFriend = (req, res, next) => {
+  console.log('adding friend')
   pg.connect(config, (err, client, done) => {
     if (err) {
       done();
-      console.log(err);
+      // console.log(err);
+      // console.log(req.body);
+      // console.log(members);
       res.status(500).json({success: false, data: err});
     }
+    console.log("req.sessions.user.id", req.session.user.members_id );
+    console.log("membersid", req.body.friend_id);
+    client.query('INSERT INTO friends (members_id, friend_id) VALUES ($1, $2)', [req.session.user.members_id, req.body.members_id], (err, results) => {
 
-    client.query('INSERT INTO friends (members_id, friend_id) VALUES ($1, $2)', [req.session.user, req.body.members_id], (err, results) => {
+
       done();
 
       if (err) {
         console.error('Error with query', err);
       }
 
-      res.massages = results.rows;
+      // res.rows = results.rows;
       next();
     });
   });
