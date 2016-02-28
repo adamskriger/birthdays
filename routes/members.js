@@ -6,6 +6,9 @@ var db = require('../db/pg');
 
 
 
+router.post('/message', db.sendMessage, (req, res) => {
+  res.render('pages/members.html.ejs', {user: req.session.user});
+});
 
 
 router.get('/all', db.getMembers,  (req, res) => {

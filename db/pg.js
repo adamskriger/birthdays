@@ -190,3 +190,25 @@ module.exports.addFriend = (req, res, next) => {
   });
 
 };
+
+function createUser(req, res, next) {
+  createSecure(req.body.email, req.body.password, saveUser);
+
+  function saveUser(email, hash) {
+    pg.connect(config, function(err, client, done) {
+      if (err) {
+        done()
+        console.log(err)
+        return res.status(500).json({success: false, data: err})
+      }
+
+      var query = client.query("INSERT INTO members( email, password_digest) VALUES ($1, $2);", [email, hash], function(err, result) {
+        done()
+        if (err) {
+        return console.error('error running query', err)
+        }
+        next()
+      })
+    })
+  }
+}

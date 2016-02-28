@@ -23,7 +23,19 @@
         <input type="hidden" name="friend_id" value=<%=member.members_id%>>
         <button type="submit">Add Friend</button>
       </form>
+      <div class="messages">
+
+        <form action="message" method="post">
+          <textarea name="message" form="usrform">Send a note</textarea>
+
+          <div class="col-md-4">
+                <button id="submit" type="submit" class="btn btn btn-success">Message Me!</button>
+              </div>
+        </form>
+
+      </div>
     </div>
+
   <% }) %>
 </div>
 
