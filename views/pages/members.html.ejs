@@ -16,7 +16,7 @@
       <div> DOB: <%= member.birthday %> </div>
       <form action="/members/all" method="post">
         <input type="hidden" name="members_id" value= <%= me %> >
-        <input type="hidden" name="friend_id" value=<%=members.members_id%>>
+        <input type="hidden" name="friend_id" value=<%=member.members_id%>>
         <button type="submit">Add Friend</button>
       </form>
     </div>
