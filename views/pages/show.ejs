@@ -41,14 +41,11 @@
 <div class="">
 
 
-    <% friends.forEach(function(friend) { %>
+    <%  for(var i=0; i<friends.length; i++) { %>
       <div class="individualmember">
-
-         <%= friends[0].friend_name %>
-
-       </div>
-
-      <% }) %>
+          <%= friends[i].friend_id %>
+          </div>
+    <%  }%>
 
 </div>
 </div>

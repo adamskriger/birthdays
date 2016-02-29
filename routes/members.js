@@ -23,10 +23,15 @@ router.post('/all', db.addFriend,db.getMember, (req, res) => {
 
 
 router.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
+  console.log("FRIENDS: ", friends);
   res.render('pages/show.ejs', {member: res.members[0], friends: res.friends, user: req.session.user});
 });
 
 
+router.post('/message', db.sendMessage, (req, res) => {
+  req.method = 'get';
+  res.writeHead(302, {location: '/../../users/' + req.session.user.members_id, user: req.session.user});
+  res.end();});
 
 
 
