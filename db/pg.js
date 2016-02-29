@@ -189,4 +189,28 @@ module.exports.addFriend = (req, res, next) => {
     });
   });
 
+}
+
+module.exports.sendMessage = (req, res, next) => {
+  pg.connect(config, (err, client, done) => {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+    client.query(`INSERT into messages (sender_id, members_id, message) VALUES ($1, $2, $3) `,[req.session.user.members_id, req.body.friend_id, req.body.message], (err, results) => {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+      // console.log("results.rows: ",  results.rows );
+      // console.log("res.members: ",  res.members);
+
+      res.friends = results.rows;
+      next();
+    });
+  });
+
 };
