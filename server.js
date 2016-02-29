@@ -5,6 +5,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var papercut = require('papercut');
 
 ///Log-in Stuff Appears Below:
 var config = "postgres://Adam1:Move2core@localhost/birthdays";
@@ -19,6 +20,7 @@ var pgSession = require('connect-pg-simple')(session);
 
 var membersRouter = require('./routes/members');
 
+dotenv.load();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
