@@ -45,27 +45,37 @@ router.post('/all', db.addFriend,db.getMember, (req, res) => {
   res.end();
 });
 
-// router.get('/avatar', (req, res) => {
-//   res.render('pages/avatar.html.ejs');
-// });
-//
-//
-// router.post ('/avatar', (req, res) => {
-//     uploader = new AvatarUploader();
-//     form = new multiparty.Form()
-//     form.parse(req, function(err, fields, files) {
-//       // eval(pry.it)
-//
-//       uploader.process(files.avatar[0].originalFilename, files.avatar[0].path, function(err, images){
-//             console.log(images);
-//             // {
-//             //  thumbnail: '/images/upload/412341-thumbnail.jpg',
-//             //  large: '/images/upload/412341-large.jpg',
-//             //  origin: '/images/upload/412341-origin.jpg'
-//             // }
-//           });
-//     })
-//     })
+router.get('/avatar', (req, res) => {
+  res.render('pages/avatar.html.ejs');
+});
+
+
+router.post ('/avatar', (req, res) => {
+      var s3 = new AWS.S3({params: {Bucket: 'birthdaysproject',
+      Key: 'AKIAJUHX7LZLFQ7FVRIA'}});
+      s3.listBuckets(function(err, data) {
+
+          for (var index in data.Buckets) {
+            var bucket = data.Buckets[index];
+            console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
+          }
+
+      });
+      var form = new multiparty.Form();
+
+      form.parse(req, function(err, fields, files) {
+        files.avatar[0]
+
+        s3.upload({Body: params}, function (err, res) {
+          if (err) {
+            // eval(pry.it)
+            console.log("Error uploading data: ", err);
+          } else {
+            console.log("Successfully uploaded data to myBucket/myKey");
+          }
+        });
+      })
+    })
 
 
 

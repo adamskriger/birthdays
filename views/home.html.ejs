@@ -10,36 +10,17 @@
 
 <header>
   <div class="nav">
-
     <%- include ./partials/nav.html.ejs %>
-
-  </div>
-
-
-
-  <div class="welcome">
-    <%- include ./partials/welcome.html.ejs %>
-
   </div>
 </header>
-<body>
 
-<div class="container">
-
+<body class= "body">
 
 
 
-  <div>
-    <a href="/users/new">Signup</a>
-  </div>
-  <div>
-    <a href="/users/login">Login!</a>
-  </div>
-  <div>
-    <form method="post" action="users/logout?_method=DELETE">
-      <button>logout</button>
-    </form>
-  </div>
+
+
+
 
 <div>
   <% if (user) {%>

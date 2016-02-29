@@ -27,44 +27,22 @@ var AWS = require('aws-sdk');
 
 
 
-// AWS.config.update({region: 'Oregon'});
 
 
 
-// s3.createBucket({Bucket: 'birthdaysproject'}, function() {
-// var params = {Bucket: 'birthdaysproject', Key: 'AKIAJUHX7LZLFQ7FVRIA', Body: 'Hello!'};
-// s3.putObject(params, function(err, data) {
-//   if (err)
-//   console.log(err)
-//   else console.log("Successfully uploaded data to myBucket/myKey");
-//
-//    });
-//
-// });
 
 
-// AWS.config.loadFromPath('/aws/AwsConfig.json');
+
+
 AWS.config = new AWS.Config();
-buffer = new Buffer(2.5 * 1024 * 1024);
 AWS.config.accessKeyId = "AKIAJUHX7LZLFQ7FVRIA";
 AWS.config.secretAccessKey = "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";
 AWS.config.region = "us-east-1";
 AWS.config.endpoint = "storagegateway.us-east-1.amazonaws.com"
 AWS.config.credentials = "credentials";
-var s3 = new AWS.S3();
-var params = {
-   Bucket: 'birthdaysproject2',
-   Key: 'AKIAJUHX7LZLFQ7FVRIA',
-   Body: buffer
-};
 
-s3.putObject(params, function (err, res) {
-   if (err) {
-       console.log("Error uploading data: ", err);
-   } else {
-       console.log("Successfully uploaded data to myBucket/myKey");
-   }
-});
+
+
 
 
 
