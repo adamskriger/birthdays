@@ -25,8 +25,8 @@ background-color: tomato;
 
 .individualmember {
 
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   border-width: 3px;
   border-style: solid;
   border-color: #FF6347;
@@ -38,7 +38,13 @@ background-color: tomato;
 .nav {
 
   position: relative;
-  left: 850px;
+  float: right;
+
+}
+
+.welcome {
+  text-align: center;
+  width: 90%;
 
 }
 .nav-element {
