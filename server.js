@@ -22,6 +22,52 @@ var session = require('express-session');
 var pgSession = require('connect-pg-simple')(session);
 var membersRouter = require('./routes/members');
 var s3 = require('s3');
+var AWS = require('aws-sdk');
+
+
+
+
+// AWS.config.update({region: 'Oregon'});
+
+
+
+// s3.createBucket({Bucket: 'birthdaysproject'}, function() {
+// var params = {Bucket: 'birthdaysproject', Key: 'AKIAJUHX7LZLFQ7FVRIA', Body: 'Hello!'};
+// s3.putObject(params, function(err, data) {
+//   if (err)
+//   console.log(err)
+//   else console.log("Successfully uploaded data to myBucket/myKey");
+//
+//    });
+//
+// });
+
+
+// AWS.config.loadFromPath('/aws/AwsConfig.json');
+AWS.config = new AWS.Config();
+buffer = new Buffer(2.5 * 1024 * 1024);
+AWS.config.accessKeyId = "AKIAJUHX7LZLFQ7FVRIA";
+AWS.config.secretAccessKey = "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";
+AWS.config.region = "us-east-1";
+AWS.config.endpoint = "storagegateway.us-east-1.amazonaws.com"
+AWS.config.credentials = "credentials";
+var s3 = new AWS.S3();
+var params = {
+   Bucket: 'birthdaysproject2',
+   Key: 'AKIAJUHX7LZLFQ7FVRIA',
+   Body: buffer
+};
+
+s3.putObject(params, function (err, res) {
+   if (err) {
+       console.log("Error uploading data: ", err);
+   } else {
+       console.log("Successfully uploaded data to myBucket/myKey");
+   }
+});
+
+
+
 
 //
 // var client = knox.createClient({
@@ -64,24 +110,21 @@ app.set('view engine', 'ejs');
 app.use('/users', userRoutes)
 app.use('/members', membersRouter);
 
-
-var client = s3.createClient({
-  maxAsyncS3: 20,     // this is the default
-  s3RetryCount: 3,    // this is the default
-  s3RetryDelay: 1000, // this is the default
-  multipartUploadThreshold: 20971520, // this is the default (20 MB)
-  multipartUploadSize: 15728640, // this is the default (15 MB)
-  s3Options: {
-    accessKeyId: "AKIAJUHX7LZLFQ7FVRIA",
-    secretAccessKey: "R5UBez5Rw1DAczgL/qpBHuO63rOkcF6okCAY90TF",
-    region: "Oregon",
-    // endpoint: 's3.yourdomain.com',
-    // sslEnabled: false
-    // any other options are passed to new AWS.S3()
-    // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
-  },
-});
-
+//
+// var client = s3.createClient({
+//   maxAsyncS3: 20,     // this is the default
+//   s3RetryCount: 3,    // this is the default
+//   s3RetryDelay: 1000, // this is the default
+//   multipartUploadThreshold: 20971520, // this is the default (20 MB)
+//   multipartUploadSize: 15728640, // this is the default (15 MB)
+//   s3Options: {
+//     accessKeyId: "AKIAJUHX7LZLFQ7FVRIA",
+//     secretAccessKey: "R5UBez5Rw1DAczgL/qpBHuO63rOkcF6okCAY90TF",
+//     region: "Oregon",
+//     // endpoint: 's3.yourdomain.com',
+//     // sslEnabled: false
+//     // any other options are passed to new AWS.S3()
+//     // See:
 
 // papercut
 // configure = (function(){
