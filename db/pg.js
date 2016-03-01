@@ -3,16 +3,17 @@ var pg = require('pg');
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 var session = require('express-session');
-
-// var config = {
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT,
-//   database: process.env.DB_NAME,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASS
-// };
-
 var config = "postgres://Adam1:Move2core@localhost/birthdays";
+
+
+
+`if (process.env.NODE_ENV === 'production') {
+      var config = process.env.DATABASE_URL;
+    } else {
+      // local config
+    }`
+
+ `heroku config:set NODE_ENV=production`
 
 /////functions for log-in/////////
 function loginUser(req, res, next) {
