@@ -117,7 +117,7 @@ module.exports.getMember = (req, res, next) => {
       res.status(500).json({success: false, data: err});
     }
 
-    client.query('SELECT * FROM members WHERE members_id = $1', [req.params.members_id], (err, results) => {
+    client.query('SELECT * FROM members WHERE members_id = $1', [req.session.user.members_id], (err, results) => {
       done();
 
       if (err) {
@@ -149,7 +149,7 @@ module.exports.displayFriends = (req, res, next) => {
       on f.friend_id = m.members_id
       and f.members_id = $1
       INNER JOIN members m1
-      ON f.members_id = m1.members_id;`,[req.params.members_id], (err, results) => {
+      ON f.members_id = m1.members_id;`,[req.session.user.members_id], (err, results) => {
       done();
 
       if (err) {
@@ -215,6 +215,54 @@ module.exports.sendMessage = (req, res, next) => {
       res.friends = results.rows;
       next();
     });
+  });
+
+};
+
+//
+
+// module.exports.editProfile = (req, res, next) => {
+//   pg.connect(config, (err, client, done) => {
+//     if (err) {
+//       done();
+//       console.log(err);
+//       res.status(500).json({success: false, data: err});
+//     }
+//
+//
+//     client.query(`UPDATE members SET (member_name, password_digest, email, birthday) VALUES ($1, $2, $3, $4) WHERE members.members_id = req.session.user`,  [req.body.member_name, req.body.password_digest, req.body.email, req.body.birthday], (err, results) => {
+//       done();
+//
+//       if (err) {
+//         console.error('Error with query', err);
+//       }
+//
+//       next();
+//     });
+//
+//   });
+//
+// };
+
+module.exports.editProfile = (req, res, next) => {
+  pg.connect(config, (err, client, done) => {
+    if (err) {
+      done();
+      console.log(err);
+      res.status(500).json({success: false, data: err});
+    }
+
+
+    client.query('UPDATE members SET member_name = $1, email = $2, birthday = $3 WHERE members_id = $4', [req.body.member_name, req.body.email, req.body.birthday, req.session.user.members_id], (err, results) => {
+      done();
+
+      if (err) {
+        console.error('Error with query', err);
+      }
+
+      next();
+    });
+
   });
 
 };

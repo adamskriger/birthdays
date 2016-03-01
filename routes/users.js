@@ -3,6 +3,18 @@ var users = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../db/pg');
 var session = require('express-session');
+var methodOverride = require('method-override')
+
+users.use(methodOverride('_method'));
+
+users.get('/edit', function(req, res) {
+  res.render('users/edit.html.ejs', {user:req.session.user});
+})
+
+users.put('/edit', db.editProfile, (req, res) => {
+  req.method = 'get';
+  res.writeHead(302, {location: '/../../users/' + req.session.user.members_id, user: req.session.user});
+  res.end();  });
 
 
 users.post('/', db.createUser, function(req, res){
@@ -21,10 +33,6 @@ users.get('/login', function(req, res) {
 users.post('/login', db.loginUser, function(req, res) {
   req.session.user = res.rows
 
-  // when you redirect you must force a save due to asynchronisity
-  // https://github.com/expressjs/session/issues/167 **
-  // "modern web browsers ignore the body of the response and so start loading
-  // the destination page well before we finished sending the response to the client."
 
   req.session.save(function() {
     res.redirect('/users/' + req.session.user.members_id)

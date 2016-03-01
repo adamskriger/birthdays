@@ -34,9 +34,7 @@ router.post('/message', db.sendMessage, (req, res) => {
   res.end();});
 
 
-  // router.put('/edit', db.editProfile, (req, res) => {
-  //
-  //   });
+
 
 
 
