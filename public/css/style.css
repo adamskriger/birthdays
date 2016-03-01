@@ -1,4 +1,19 @@
 
+body {
+  background-image: url("/images/snow.jpeg");
+
+}
+
+
+.welcome {
+
+  left: 35%;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Questrial', sans-serif;
+
+}
 
 .friends-section {
 
@@ -6,9 +21,8 @@ width: 95%;
 height: 50%;
 border-width: 6px;
 border-style: solid;
-border-color: tomato;
-background-color: #e83635;
 display: inline-block;
+text-align: center;
 }
 
 .membersection {
@@ -17,28 +31,32 @@ width: 95%;
 height: auto;
 border-width: 6px;
 border-style: solid;
-border-color: #e83635;
+border-color: black;
 display: inline-block;
-background-color: tomato;
-
+text-align: center;
+background-color: white;
 }
 
 .individualmember {
 
-  width: 200px;
-  height: 200px;
+  width: 202px;
+  height: 202px;
   border-width: 3px;
   border-style: solid;
-  border-color: #FF6347;
+  border-color: black;
   display: inline-block;
   float: left;
+  margin: 10px;
+  text-align: center;
+  background-color: white;
 
 }
 
 .nav {
 
   position: relative;
-  left: 850px;
+  float: right;
+
 
 }
 .nav-element {

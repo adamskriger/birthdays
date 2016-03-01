@@ -5,11 +5,22 @@
     <title></title>
     <% include ../partials/head.html.ejs %>
 
+
+  </head>
+
+  <header>
     <div class="welcome">
       <% include ../partials/welcome.html.ejs %>
 
     </div>
-  </head>
+
+    <div class="nav">
+
+      <%- include ../partials/nav.html.ejs %>
+    </div>
+
+  </header>
+
   <body>
 <div>
   <% members.forEach(function(member) { %>
@@ -25,14 +36,7 @@
       </form>
 
 
-      <div class="messages">
-        <form class="" action="/members/message" method="post">
-          <textarea name="message" rows="8" cols="40">Send Message</textarea>
-          <input type="hidden" name="friend_id" value=<%=member.members_id%>>
 
-          <button type="submit"  name="message">Send Message</button>
-        </form>
-      </div>
 
 
 
