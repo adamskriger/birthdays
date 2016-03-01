@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <% include ../partials/head.html.ejs %>
+
+</head>
+<header>
+  <div class="nav">
+
+    <%- include ../partials/nav.html.ejs %>
+
+  </div>
+
+  <div class="welcome">
+    <%- include ../partials/welcome.html.ejs %>
+
+  </div>
+</header>
+<body>
+
+<div class="container">
+
+
+<div class="row">
+<div class="six columns">
+
+
+  <form action="/users/login" method="post">
+
+    <div>
+      <label for="email">email</label>
+      <input type="text" name="email">
+    </div>
+
+    <div>
+      <label for="password">password</label>
+      <input type="text" name="password">
+    </div>
+<div class="">
+<input type="submit" value="Submit">
+    </div>
+
+  </form>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

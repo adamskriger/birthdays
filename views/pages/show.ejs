@@ -5,37 +5,63 @@
 
 </head>
 
+
+<header>
+  <div class="nav">
+
+    <%- include ../partials/nav.html.ejs %>
+  </div>
+  <div class="welcome">
+    <% include ../partials/welcome.html.ejs %>
+
+  </div>
+
+</header>
 <body>
-    <div class="container">
+<div class="container">
 
-<div class="row membersection">
-<div class="6 columns">
-
+  <div class=" float-left row membersection">
+    <div class="eleven columns">
 
 
       <p>Member #: <%= member.members_id %></p>
       <p>Name: <%=member.member_name%></p>
       <p>email: <%=member.email%></p>
       <p>birthdate: <%=member.birthday%></p>
+      <p>
+        <a href="/users/edit">Edit Profile</a>
+      </p>
+
+
+  </div>
 </div>
+<div class="findfriends">
+  <a href="/members/all">Find Friends</a>
 </div>
 
 
-
-<div class=" row friends">
+<div class=" float-left row friends-section">
   <div class="6 columns">
 
+<div >
 
-    <% friends.forEach(function(friend) { %>
-      <% for (var attr in friend) { %>
-        <%= friend[attr] %>
-      <% } %>
-   <% }) %>
+
+    <%  for(var i=0; i<friends.length; i++) { %>
+      <div class="individualmember">
+        <ul class="friend_attributes">
+        <li>  <%= friends[i].friend_id %> </li>
+        <li>  <%= friends[i].friend_email %> </li>
+        <li>  <%= friends[i].friend_birthday %> </li>
+
+      </ul>
+
+          </div>
+    <%  }%>
+
 </div>
 </div>
 
 
 
-<!-- ///end container // -->
   </div>
 </body>

@@ -8,20 +8,30 @@ var db = require('../db/pg');
 
 
 
-router.get('/all/:members_id/', db.getMembers,  (req, res) => {
-  res.render('pages/members.html.ejs', {members: res.members});
+router.get('/all', db.getMembers,  (req, res) => {
+  console.log(req.session.user.members_id)
+  console.log("res.members[0]: ", res.members[0]);
+  res.render('pages/members.html.ejs', {members: res.members, me: req.session.user.members_id, user: req.session.user});
 });
 
-router.post('/all/:members_id/', db.addFriend, (req, res) => {
-  console.log("This is the post being hit ");
+router.post('/all', db.addFriend,db.getMember, (req, res) => {
+  req.method = 'get';
+  res.writeHead(302, {location: '/../../users/' + req.session.user.members_id, user: req.session.user});
+  res.end();
 });
+
 
 
 router.get('/:members_id', db.getMember, db.displayFriends, (req, res) => {
-  res.render('pages/show.ejs', {member: res.members[0], friends: res.friends});
+  console.log("FRIENDS: ", friends);
+  res.render('pages/show.ejs', {member: res.members[0], friends: res.friends, user: req.session.user});
 });
 
 
+router.post('/message', db.sendMessage, (req, res) => {
+  req.method = 'get';
+  res.writeHead(302, {location: '/../../users/' + req.session.user.members_id, user: req.session.user});
+  res.end();});
 
 
 

@@ -5,27 +5,45 @@
     <title></title>
     <% include ../partials/head.html.ejs %>
 
+
   </head>
+
+  <header>
+    <div class="welcome">
+      <% include ../partials/welcome.html.ejs %>
+
+    </div>
+
+    <div class="nav">
+
+      <%- include ../partials/nav.html.ejs %>
+    </div>
+
+  </header>
+
   <body>
+<div>
+  <% members.forEach(function(member) { %>
+    <div class= "individualmember">
+      <div> <%= member.members_id %> </div>
+      <div> Name: <%= member.member_name %> </div>
+      <div> Email: <%= member.email %> </div>
+      <div> DOB: <%= member.birthday %> </div>
+      <form action="/members/all" method="post">
+        <input type="hidden" name="members_id" value= <%= me %> >
+        <input type="hidden" name="friend_id" value=<%=member.members_id%>>
+        <button type="submit">Add Friend</button>
+      </form>
 
 
-   <% members.forEach(function(member) { %><div class= individualmember>
-      <% for (var attr in member) { %>
-        <%= member[attr] %>
-      <% } %>
 
-    <form class="" action="/all/<%=members.members_id%>" method="post">
 
-      <input type="hidden" name="<members_id>" value="req.params.members_id">
 
-      <input type="hidden" name="friend_id" value="<%=members.members_id%>">
 
-      <button type="submit">Add Friend</button>
-
-  </form>
-
+    </div>
+  <% }) %>
 </div>
-<% }) %>
+
 
  </body>
 
