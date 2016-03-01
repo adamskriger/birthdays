@@ -38,12 +38,18 @@
 <div class=" float-left row friends-section">
   <div class="6 columns">
 
-<div class="">
+<div >
 
 
     <%  for(var i=0; i<friends.length; i++) { %>
       <div class="individualmember">
-          <%= friends[i].friend_id %>
+        <ul class="friend_attributes">
+        <li>  <%= friends[i].friend_id %> </li>
+        <li>  <%= friends[i].friend_email %> </li>
+        <li>  <%= friends[i].friend_birthday %> </li>
+
+      </ul>
+
           </div>
     <%  }%>
 

@@ -141,7 +141,9 @@ module.exports.displayFriends = (req, res, next) => {
 
     client.query(`SELECT m1.member_name,
       m.members_id AS friend_id,
-      m.member_name AS friend_name
+      m.member_name AS friend_name,
+      m.email AS friend_email,
+      m.birthday AS friend_birthday
       FROM friends AS f
       INNER JOIN members AS m
       on f.friend_id = m.members_id
@@ -155,7 +157,7 @@ module.exports.displayFriends = (req, res, next) => {
       }
       // console.log("results.rows: ",  results.rows );
       // console.log("res.members: ",  res.members);
-
+console.log(res.friends);
       res.friends = results.rows;
       next();
     });
